@@ -6,6 +6,8 @@ function Index() {
     const router = useRouter()
     const [email, setEmail] = useState();
     const [password, setPassword] = useState()
+    const [errors, setErrors] = useState([])
+    const [status, setStatus] = useState(null)
 
     const { login } = useAuth({
         middleware: 'guest',
@@ -14,7 +16,7 @@ function Index() {
 
      const handleSubmit= async event => {
         event.preventDefault();
-
+            login({email, password, setErrors, setStatus})
        };
     return (
         <section className="bg-white {-- h-screen --}">
