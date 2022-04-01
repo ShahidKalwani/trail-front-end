@@ -42,7 +42,9 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
         axios
             .post('/login', props)
-            .then(() => revalidate())
+            .then(() =>{
+
+            })
             .catch(error => {
                 if (error.response.status !== 422) throw error
 
@@ -92,11 +94,13 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         if (! error) {
             await axios.post('/logout')
 
-            revalidate()
+            // revalidate()
         }
 
         window.location.pathname = '/login'
     }
+
+   
 
     useEffect(() => {
         if (middleware === 'guest' && redirectIfAuthenticated && user) router.push(redirectIfAuthenticated)
